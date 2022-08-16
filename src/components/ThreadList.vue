@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ThreadsList } from "../assets/types";
+import MessageCard from "./MessageCard.vue";
 import { API } from "../consts/apiConsts";
 import axios from "axios";
 import { reactive, onMounted } from "vue";
@@ -22,7 +23,8 @@ const getThreadList = async () => {
 };
 
 onMounted(async () => {
-  threads.list = await getThreadList();
+  const threadList = await getThreadList();
+  threads.list = threadList;
 });
 </script>
 
@@ -31,7 +33,7 @@ onMounted(async () => {
     <ul>
       <li v-for="(messages, i) in threads.list" :key="i">
         <div v-for="message in messages" :key="message.id">
-          {{ message }}
+          <MessageCard :message="message" :messageNumber="messages.length" />
         </div>
       </li>
     </ul>

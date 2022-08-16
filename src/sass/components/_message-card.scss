@@ -1,0 +1,34 @@
+$message-card-margin-gutter: 20px;
+$message-card-padding-gutter: 35px;
+$message-text-top-margin-gutter: 15px;
+
+.message-container {
+  min-width: $thread-container-min-width;
+  max-width: $thread-container-max-width;
+  display: flex;
+  flex-direction:column;
+  margin: $message-card-margin-gutter;
+  padding: $message-card-padding-gutter;
+  @include shadow-border($color-white)
+}
+
+.subject, .team {
+  font-weight: bold;
+}
+
+.row {
+  @include row;
+}
+
+.text {
+  margin-top: $message-text-top-margin-gutter;
+  font-weight: bold;
+}
+
+.high-rating {
+ @include high-rating-subject-color;
+}
+
+.low-rating {
+  @include low-rating-color;
+}

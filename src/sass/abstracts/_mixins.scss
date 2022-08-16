@@ -1,0 +1,23 @@
+@mixin row {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin shadow-border($background-color) {
+  border: 0px solid;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 10px 0px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px;
+  background-color: $background-color;
+}
+
+@mixin low-rating-color {
+  color: $low-rating-color; 
+}
+
+@mixin high-rating-subject-color {
+  color: $high-rating-subject-color;
+}
+
+@mixin high-rating-popup-color {
+  color: $high-rating-popup-color;
+}
