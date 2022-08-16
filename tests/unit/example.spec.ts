@@ -1,12 +1,10 @@
 import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/HelloWorld.vue";
+import RootPage from "@/components/RootPage.vue";
 
-describe("HelloWorld.vue", () => {
-  it("renders props.msg when passed", () => {
-    const msg = "new message";
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg },
-    });
-    expect(wrapper.text()).toMatch(msg);
+describe("RootPage.vue", () => {
+  it("renders props.title when passed", () => {
+    const wrapper = shallowMount(RootPage);
+    console.log(wrapper.classes);
+    expect(wrapper.classes()).toContain("root-container");
   });
 });

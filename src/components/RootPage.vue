@@ -1,11 +1,7 @@
-<script setup lang="ts">
-import ThreadList from "./ThreadList.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="top-container">
-    <div>First Component</div>
-  </div>
+  <div class="root-container">First Component</div>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
