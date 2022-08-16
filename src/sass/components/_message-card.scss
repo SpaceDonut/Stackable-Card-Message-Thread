@@ -32,15 +32,3 @@ $message-text-top-margin-gutter: 15px;
 .low-rating-subject {
   color: $subject-low-rating-color;
 }
-
-
-
-// <div class="subject-team-row">
-// <div class="subject">{{ props.message.subject }}</div>
-// <div class="team">{{ props.message.team }}</div>
-// </div>
-// <div class="question-created-row">
-// <div class="question">{{ props.message.question }}</div>
-// <div class="created">{{ props.message.created_at }}</div>
-// </div>
-// <div class="text">{{ props.message.text }}</div>
