@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import { reactive } from "vue";
-import { THREADS } from "../assets/data";
-import { Threads } from "../assets/types";
-
-const threadList = reactive<Threads>(THREADS);
+import ThreadList from "./ThreadList.vue";
 </script>
 
 <template>
-  <div class="hello">
-    <h1>{{ threadList.length && threadList[0][0].question }}</h1>
+  <div class="top-container">
+    <div>First Component</div>
   </div>
 </template>
 
