@@ -13,4 +13,4 @@ export interface Message {
   acknowledged?: boolean;
 }
 
-export type Threads = Message[][];
+export type ThreadsList = Message[][];
