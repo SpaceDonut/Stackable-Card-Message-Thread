@@ -33,7 +33,7 @@ onMounted(async () => {
     <ul>
       <li v-for="(messages, i) in threads.list" :key="i">
         <div v-for="message in messages" :key="message.id">
-          <MessageCard :message="message" />
+          <MessageCard :message="message" :messageNumber="messages.length" />
         </div>
       </li>
     </ul>

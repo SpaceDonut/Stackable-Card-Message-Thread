@@ -1,37 +1,19 @@
 <script setup lang="ts">
 import { Message } from "../assets/types";
-import { getDateFormat } from "../utils/formatDate";
+import { getDateFormat } from "../utils/formatDateUtils";
 import { ref, onMounted } from "vue";
-import { RATING, RatingType, CSS_CLASSES } from "../consts/messageConsts";
+import { changeSubjectColor } from "../utils/messageCardUtils";
 
 const props = defineProps<{
   message: Message;
 }>();
 
 const dayAndMonthFormat = ref(getDateFormat(props.message.created_at));
-const rating = ref<RatingType>("");
-
-const changeSubjectColor = () => {
-  if (rating.value === RATING.HIGH) {
-    return CSS_CLASSES.HIGH_RATING_SUBJECT;
-  } else {
-    return CSS_CLASSES.LOW_RATING_SUBJECT;
-  }
-};
-
-const changePopupColor = () => {
-  if (rating.value === RATING.HIGH) {
-    return CSS_CLASSES.HIGH_RATING_POPUP;
-  } else {
-    return CSS_CLASSES.LOW_RATING_POPUP;
-  }
-};
+let ratingClassObject = ref("");
 
 onMounted(() => {
-  if (props.message.score !== undefined && props.message.score <= 5) {
-    rating.value = RATING.LOW;
-  } else {
-    rating.value = RATING.HIGH;
+  if (props.message.score !== undefined) {
+    ratingClassObject.value = changeSubjectColor(props.message.score);
   }
 });
 </script>
@@ -39,7 +21,7 @@ onMounted(() => {
 <template>
   <div class="message-container">
     <div class="row">
-      <div class="subject" :class="changeSubjectColor()">
+      <div class="subject" :class="ratingClassObject">
         {{ props.message.subject }}
       </div>
       <div class="team">{{ props.message.team }}</div>

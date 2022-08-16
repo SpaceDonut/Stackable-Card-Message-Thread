@@ -1,4 +1,4 @@
-export type RatingType = "HIGH" | "LOW" | "";
+export type RatingType = "high" | "low" | "";
 
 export interface Rating {
   HIGH: RatingType;
@@ -6,13 +6,18 @@ export interface Rating {
 }
 
 export const RATING: Rating = {
-  HIGH: "HIGH",
-  LOW: "LOW",
+  HIGH: "high",
+  LOW: "low",
 };
 
-export const CSS_CLASSES = {
-  HIGH_RATING_POPUP: "popup-high-rating-color",
-  LOW_RATING_POPUP: "popup-low-rating-color",
-  HIGH_RATING_SUBJECT: "high-rating-subject",
-  LOW_RATING_SUBJECT: "low-rating-subject",
+export type ClassesType = "high-rating" | "low-rating";
+
+export interface CssClasses {
+  HIGH_RATING: ClassesType;
+  LOW_RATING: ClassesType;
+}
+
+export const CSS_CLASSES: CssClasses = {
+  HIGH_RATING: "high-rating",
+  LOW_RATING: "low-rating",
 };

@@ -25,10 +25,10 @@ $message-text-top-margin-gutter: 15px;
   font-weight: bold;
 }
 
-.high-rating-subject {
-  color: $subject-high-rating-color;
+.high-rating {
+ @include high-rating-subject-color;
 }
 
-.low-rating-subject {
-  color: $subject-low-rating-color;
+.low-rating {
+  @include low-rating-color;
 }
