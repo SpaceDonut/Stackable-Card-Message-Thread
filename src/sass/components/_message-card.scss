@@ -1,0 +1,46 @@
+$message-card-margin-gutter: 20px;
+$message-card-padding-gutter: 35px;
+$message-text-top-margin-gutter: 15px;
+
+.message-container {
+  min-width: $thread-container-min-width;
+  max-width: $thread-container-max-width;
+  display: flex;
+  flex-direction:column;
+  margin: $message-card-margin-gutter;
+  padding: $message-card-padding-gutter;
+  @include shadow-border($color-white)
+}
+
+.subject, .team {
+  font-weight: bold;
+}
+
+.row {
+  @include row;
+}
+
+.text {
+  margin-top: $message-text-top-margin-gutter;
+  font-weight: bold;
+}
+
+.high-rating-subject {
+  color: $subject-high-rating-color;
+}
+
+.low-rating-subject {
+  color: $subject-low-rating-color;
+}
+
+
+
+// <div class="subject-team-row">
+// <div class="subject">{{ props.message.subject }}</div>
+// <div class="team">{{ props.message.team }}</div>
+// </div>
+// <div class="question-created-row">
+// <div class="question">{{ props.message.question }}</div>
+// <div class="created">{{ props.message.created_at }}</div>
+// </div>
+// <div class="text">{{ props.message.text }}</div>

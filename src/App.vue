@@ -6,4 +6,6 @@ import RootPage from "./components/RootPage.vue";
   <RootPage />
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "src/sass/main.scss";
+</style>
