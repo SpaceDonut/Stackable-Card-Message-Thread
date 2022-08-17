@@ -1,0 +1,11 @@
+.message-corner-popup-container {
+  width: 50px;
+}
+
+.low-rating {
+@include low-rating-color;
+}
+
+.high-rating {
+@include high-rating-popup-color;
+}
