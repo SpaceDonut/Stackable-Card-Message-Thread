@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ThreadsList } from "../assets/types";
+import { ThreadsList, Message, MessageWithCollapsed } from "../assets/types";
 import MessageCard from "./MessageCard.vue";
 import { API } from "../consts/apiConsts";
 import axios from "axios";
-import { reactive, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
+import { createCollapsedThreadList } from "../utils/threadListUtils";
 
 interface Threads {
   list: ThreadsList;
@@ -12,6 +13,8 @@ interface Threads {
 const threads: Threads = reactive({
   list: [],
 });
+
+const forceUpdate = ref(0);
 
 const getThreadList = async () => {
   try {
@@ -22,23 +25,32 @@ const getThreadList = async () => {
   }
 };
 
+const onClickHandler = (messageClicked: Message | MessageWithCollapsed) => {
+  threads.list = createCollapsedThreadList(threads.list, messageClicked);
+  forceUpdate.value++;
+};
+
 onMounted(async () => {
   const threadList = await getThreadList();
-  threads.list = threadList;
+  const collapsableThreadList = createCollapsedThreadList(threadList);
+  threads.list = collapsableThreadList;
 });
 </script>
 
 <template>
-  <div class="top-container">
+  <div class="top-container" :key="forceUpdate">
     <ul>
       <li v-for="(messages, i) in threads.list" :key="i">
-        <div v-for="message in messages" :key="message.id">
-          <MessageCard :message="message" :messageNumber="messages.length" />
-        </div>
+        <ul class="thread-list">
+          <MessageCard
+            v-for="message in messages"
+            :key="message.id"
+            :message="message"
+            :messageNumber="messages.length"
+            @onClickMessageCard="onClickHandler"
+          />
+        </ul>
       </li>
     </ul>
   </div>
 </template>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
