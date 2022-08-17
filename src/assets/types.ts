@@ -13,8 +13,9 @@ export interface Message {
   acknowledged?: boolean;
 }
 
-export interface MessageWithCollapsed extends Message {
-  collapsed: boolean;
+export interface MessageWithCollapsedAndPopup extends Message {
+  collapsed?: boolean;
+  showMessagePopup?: boolean;
 }
 
-export type ThreadsList = Message[][] | MessageWithCollapsed[][];
+export type ThreadsList = Message[][] | MessageWithCollapsedAndPopup[][];

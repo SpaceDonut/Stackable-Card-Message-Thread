@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { ThreadsList, Message, MessageWithCollapsed } from "../assets/types";
+import {
+  ThreadsList,
+  Message,
+  MessageWithCollapsedAndPopup,
+} from "../assets/types";
 import MessageCard from "./MessageCard.vue";
 import { API } from "../consts/apiConsts";
 import axios from "axios";
@@ -15,6 +19,7 @@ const threads: Threads = reactive({
 });
 
 const forceUpdate = ref(0);
+const showMessagePopup = ref(false);
 
 const getThreadList = async () => {
   try {
@@ -25,14 +30,23 @@ const getThreadList = async () => {
   }
 };
 
-const onClickHandler = (messageClicked: Message | MessageWithCollapsed) => {
-  threads.list = createCollapsedThreadList(threads.list, messageClicked);
+const onClickHandler = (
+  messageClicked: Message | MessageWithCollapsedAndPopup
+) => {
+  threads.list = createCollapsedThreadList(
+    threads.list,
+    showMessagePopup.value,
+    messageClicked
+  );
   forceUpdate.value++;
 };
 
 onMounted(async () => {
   const threadList = await getThreadList();
-  const collapsableThreadList = createCollapsedThreadList(threadList);
+  const collapsableThreadList = createCollapsedThreadList(
+    threadList,
+    showMessagePopup.value
+  );
   threads.list = collapsableThreadList;
 });
 </script>

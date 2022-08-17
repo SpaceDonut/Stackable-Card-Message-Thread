@@ -1,23 +1,37 @@
-import { ThreadsList, Message, MessageWithCollapsed } from "../assets/types";
+import {
+  ThreadsList,
+  Message,
+  MessageWithCollapsedAndPopup,
+} from "../assets/types";
 
 export const createCollapsedThreadList = (
   threadList: ThreadsList,
-  messageClicked?: Message | MessageWithCollapsed
+  messageClicked?: Message | MessageWithCollapsedAndPopup
 ) => {
   const collapsed = false;
   const collapsedThreadList = threadList.map((messageList: Message[]) => {
-    return messageList.map((message: Message, i) => {
-      if (i > 0) {
+    const hasMoreThanOneMessage = messageList.length > 1;
+    const isNotCollapsed =
+      hasMoreThanOneMessage && "collapsed" in messageList[1];
+    return messageList.map(
+      (message: Message | MessageWithCollapsedAndPopup, i) => {
+        if (i > 0) {
+          return {
+            ...message,
+            collapsed:
+              message.question_id === messageClicked?.question_id
+                ? !collapsed
+                : collapsed,
+          };
+        }
         return {
           ...message,
-          collapsed:
-            message.question_id === messageClicked?.question_id
-              ? !collapsed
-              : collapsed,
+          showMessagePopup:
+            hasMoreThanOneMessage && messageList[1].collapsed ? true : false,
         };
       }
-      return message;
-    });
+    );
   });
+  console.log("collapsedThreadList", collapsedThreadList);
   return collapsedThreadList;
 };
