@@ -1,15 +1,18 @@
 $message-card-margin-gutter: 20px;
 $message-card-padding-gutter: 35px;
 $message-text-top-margin-gutter: 15px;
+$message-card-height: 90px;
+$team-text-min-width: 150px;
+$created-text-min-width: 80px;
+$bigger-gutter-between-threads: 50px;
 
 .message-container {
   min-width: $thread-container-min-width;
   max-width: $thread-container-max-width;
-  display: flex;
-  flex-direction:column;
   margin: $message-card-margin-gutter;
   padding: $message-card-padding-gutter;
-  @include shadow-border($color-white)
+  @include shadow-border($color-white);
+  margin-bottom: $bigger-gutter-between-threads;
 }
 
 .subject, .team {
@@ -31,4 +34,35 @@ $message-text-top-margin-gutter: 15px;
 
 .low-rating {
   @include low-rating-color;
+}
+
+.team {
+  min-width: $team-text-min-width;
+}
+
+.created {
+  min-width: $created-text-min-width;
+}
+
+.stacked {
+  width: 100%;
+  min-width: $thread-container-min-width;
+  max-width: $thread-container-max-width;
+  height: inherit;
+  position: absolute;
+  margin: 10px auto auto 30px;
+  top: 0;
+  z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+  .stacked {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    overflow-x: auto;
+  }
 }

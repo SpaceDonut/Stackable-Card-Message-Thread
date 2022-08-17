@@ -3,6 +3,13 @@ html {
   background-color: $global-background-color;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
 ul {
   list-style: none;
 }
